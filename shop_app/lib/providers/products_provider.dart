@@ -42,11 +42,15 @@ class ProductsProvider with ChangeNotifier {
     // ),
   ];
 
+  final String authToken;
+
+  ProductsProvider(this.authToken, this._items);
+
   Future<Null> fetchAndSetProducts() async {
     List<Product> loadedProducts = [];
 
     final url = Uri.parse(
-        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products.json');
+        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -91,7 +95,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
-        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products.json');
+        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products.json?auth=$authToken');
     try {
       final response = await http.post(url,
           body: json.encode({
@@ -99,7 +103,6 @@ class ProductsProvider with ChangeNotifier {
             'description': product.description,
             'imageUrl': product.imageUrl,
             'price': product.price,
-            'isFavorite': product.isFavorite,
           }));
 
       final newProduct = Product(
@@ -120,7 +123,7 @@ class ProductsProvider with ChangeNotifier {
     final productIndex = _items.indexWhere((element) => element.id == id);
     if (productIndex >= 0) {
       final url = Uri.parse(
-          'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products/$id.json');
+          'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
       await http.patch(
         url,
         body: json.encode(
@@ -139,7 +142,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<Null> deleteProduct(String id) async {
     final url = Uri.parse(
-        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products/$id.json');
+        'https://flutter-shop-23c27-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
     final existingProductIndex =
         _items.indexWhere((element) => element.id == id);
     var existingProduct = _items[existingProductIndex];

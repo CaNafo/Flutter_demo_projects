@@ -1,11 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.places_app">
-   
-   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-   <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-   
+    package="com.example.chat_app">
    <application
-        android:label="places_app"
+        android:label="chat_app"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

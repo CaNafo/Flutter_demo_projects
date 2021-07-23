@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../screens/auth_tabs_screen.dart';
+import './screens/auth_screens/auth_tabs_screen.dart';
+import './screens/app_tabs_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Colors.white,
+        primaryColor: Color.fromRGBO(229, 229, 229, 1),
         buttonColor: Color.fromRGBO(0, 88, 127, 1),
+        accentColor: Color.fromRGBO(245, 245, 245, 1),
+        bottomAppBarColor: Color.fromRGBO(33, 33, 33, 1),
         primaryTextTheme: TextTheme(
           headline2: TextStyle(
             fontSize: 45,
@@ -28,6 +31,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: AuthTabsScreen(),
+      initialRoute: "/",
+      routes: {
+        AppTabsScreen.routeName: (ctx) => AppTabsScreen(),
+      },
     );
   }
 }

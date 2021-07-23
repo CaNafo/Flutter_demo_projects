@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../screens/login_screen.dart';
-import '../screens/register_screen.dart';
+import './login_screen.dart';
+import './register_screen.dart';
+import '../../providers/auth_provider.dart';
 
 class AuthTabsScreen extends StatefulWidget {
   @override
@@ -41,7 +43,7 @@ class _AuthTabsScreenState extends State<AuthTabsScreen>
   Widget build(BuildContext context) {
     final appBar = AppBar(
       title: const Image(
-        image: AssetImage("assets/images/demo_app_logo.jpg"),
+        image: AssetImage("assets/images/demo_app_logo.png"),
         height: 50,
       ),
       bottom: TabBar(
@@ -72,25 +74,33 @@ class _AuthTabsScreenState extends State<AuthTabsScreen>
     return Scaffold(
       appBar: appBar,
       backgroundColor: Theme.of(context).primaryColor,
-      body: Column(children: [
-        Container(
-          height: heigth,
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              LoginScreen(),
-              RegisterScreen(),
-            ],
-          ),
+      body: ChangeNotifierProvider(
+        create: (context) => AuthProvider(),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 25,
+              ),
+              height: heigth,
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  LoginScreen(),
+                  RegisterScreen(),
+                ],
+              ),
+            ),
+            if (tabIndex == 1)
+              TextButton(
+                onPressed: () {
+                  _tabController.animateTo(tabIndex);
+                },
+                child: const Text("Nemate nalog? Registrujte se ovdje."),
+              ),
+          ]),
         ),
-        if (tabIndex == 1)
-          TextButton(
-            onPressed: () {
-              _tabController.animateTo(tabIndex);
-            },
-            child: const Text("Nemate nalog? Registrujte se ovdje."),
-          ),
-      ]),
+      ),
     );
   }
 }

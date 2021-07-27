@@ -29,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (!_registerForm.currentState.validate()) return;
       _registerForm.currentState.save();
       try {
-        await _authProvider.signUp(_email, _password);
+        await _authProvider.signUp(_email, _password, _username);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

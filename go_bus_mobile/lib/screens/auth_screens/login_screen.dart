@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_bus_mobile/screens/app_tabs_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
@@ -12,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _loginForm;
+  var email = "";
+  var password = "";
+
   @override
   void initState() {
     _loginForm = GlobalKey<FormState>();
@@ -22,11 +24,26 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final _authProvider = Provider.of<AuthProvider>(context, listen: false);
 
-    _saveForm() {
+    _saveForm() async {
       bool validated = _loginForm.currentState.validate();
       if (!validated) return;
 
-      Navigator.of(context).pushReplacementNamed(AppTabsScreen.routeName);
+      _loginForm.currentState.save();
+
+      try {
+        await _authProvider.login(email, password, null);
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      } catch (e) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "$e",
+            ),
+            backgroundColor: Theme.of(context).errorColor,
+          ),
+        );
+      }
     }
 
     return SingleChildScrollView(
@@ -57,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     textInputAction: TextInputAction.next,
                     validator: _authProvider.validateEmailField,
+                    onSaved: (value) => email = value,
                   ),
                   const SizedBox(
                     height: 15,
@@ -64,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   PasswordInputField(
                     validate: _authProvider.validateLoginPassword,
                     placeholder: "Lozinka",
-                    onChanged: (text) {},
+                    onChanged: (text) => password = text,
                     textInputAction: TextInputAction.send,
                   ),
                   const SizedBox(

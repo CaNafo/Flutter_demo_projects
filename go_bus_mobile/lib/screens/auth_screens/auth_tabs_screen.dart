@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import './login_screen.dart';
 import './register_screen.dart';
-import '../../providers/auth_provider.dart';
 
 class AuthTabsScreen extends StatefulWidget {
   @override
@@ -74,32 +72,29 @@ class _AuthTabsScreenState extends State<AuthTabsScreen>
     return Scaffold(
       appBar: appBar,
       backgroundColor: Theme.of(context).primaryColor,
-      body: ChangeNotifierProvider(
-        create: (context) => AuthProvider(),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 25,
-              ),
-              height: heigth,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  LoginScreen(),
-                  RegisterScreen(),
-                ],
-              ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 25,
             ),
-            if (tabIndex == 1)
-              TextButton(
-                onPressed: () {
-                  _tabController.animateTo(tabIndex);
-                },
-                child: const Text("Nemate nalog? Registrujte se ovdje."),
-              ),
-          ]),
-        ),
+            height: heigth,
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                LoginScreen(),
+                RegisterScreen(),
+              ],
+            ),
+          ),
+          if (tabIndex == 1)
+            TextButton(
+              onPressed: () {
+                _tabController.animateTo(tabIndex);
+              },
+              child: const Text("Nemate nalog? Registrujte se ovdje."),
+            ),
+        ]),
       ),
     );
   }

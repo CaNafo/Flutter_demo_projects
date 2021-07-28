@@ -28,10 +28,6 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      title: const Image(
-        image: AssetImage("assets/images/logged_logo.png"),
-        height: 50,
-      ),
       centerTitle: true,
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,

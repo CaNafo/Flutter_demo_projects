@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:go_bus_mobile/widgets/custom_dialog_box.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../providers/home_screen_provider.dart';
+import '../widgets/custom_dialog_box.dart';
+import '../widgets/info_dialog.dart';
+
+class HomeScreen extends StatefulWidget {
   static const routeName = "/home-screen";
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var _flutterChosen = false;
+  var _reactChosen = false;
+  var _springChosen = false;
+  var _question = "";
+
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeScreenProvider>(context);
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(
         new FocusNode(),
@@ -53,10 +70,13 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const TextField(
+              TextField(
                 decoration: const InputDecoration(
                   labelText: "Unesite pitanje",
                 ),
+                onChanged: (text) {
+                  _question = text;
+                },
               ),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -71,17 +91,33 @@ class HomeScreen extends StatelessWidget {
                         builder: (ctx) => CustomDialogBox(
                           title: "Lista tehnologija",
                           descriptions:
-                              "Odaberite tehnologiju za koju postavljate pitanje.",
+                              "Odaberite tehnologije za koje postavljate pitanje.",
                           text: "ОK",
+                          initValueFlutter: _flutterChosen,
+                          initValueReact: _reactChosen,
+                          initValueSpring: _springChosen,
                         ),
+                      ).then(
+                        (value) {
+                          setState(() {
+                            _flutterChosen = value[0];
+                            _reactChosen = value[1];
+                            _springChosen = value[2];
+                          });
+                        },
                       );
                     },
-                    icon: const Icon(Icons.more_vert),
+                    icon: (_flutterChosen || _reactChosen || _springChosen)
+                        ? const Icon(Icons.check)
+                        : const Icon(Icons.more_vert),
                     label: const Text("Odaberi tehnologiju"),
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(5),
                       backgroundColor: MaterialStateProperty.all(
-                          Theme.of(context).buttonColor),
+                        (_flutterChosen || _reactChosen || _springChosen)
+                            ? Colors.orange[500]
+                            : Theme.of(context).buttonColor,
+                      ),
                     ),
                   ),
                 ),
@@ -90,8 +126,41 @@ class HomeScreen extends StatelessWidget {
                 width: 150,
                 height: 60,
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("Pošalji"),
+                  onPressed: () {
+                    List technologiesList = [];
+                    if (_flutterChosen) technologiesList.add("Flutter");
+                    if (_reactChosen) technologiesList.add("React");
+                    if (_springChosen) technologiesList.add("Spring");
+
+                    if (_question.length > 0 && technologiesList.length > 0)
+                      homeProvider
+                          .addQuestion(_question, technologiesList)
+                          .then(
+                            (value) => showDialog(
+                              context: context,
+                              builder: (ctx) => InfoDialog(
+                                title: "Čestitamo",
+                                descriptions:
+                                    "Uspješno ste poslali pitanje. Listu svih pitanja sa odgovorima možete pogledati na ekranu Q&A.",
+                                text: "OK",
+                              ),
+                            ),
+                          );
+                    else {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => InfoDialog(
+                          title: "Pažnja",
+                          descriptions:
+                              "Molimo vas da unesete pitanje i odaberete tehnologiju.",
+                          text: "OK",
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "Pošalji",
+                  ),
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(5),
                     backgroundColor: MaterialStateProperty.all(

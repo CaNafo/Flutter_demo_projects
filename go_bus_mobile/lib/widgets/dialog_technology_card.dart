@@ -17,44 +17,47 @@ class DialogTechnologyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
-      child: Card(
-        elevation: 5,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Image(
-                    image: image,
+      height: 70,
+      child: TextButton(
+        onPressed: () => onChanged(!checkBoxValue),
+        child: Card(
+          elevation: 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
                   ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  technologyName,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                  SizedBox(
+                    height: 30,
+                    child: Image(
+                      image: image,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Checkbox(
-              checkColor: Colors.white,
-              fillColor: MaterialStateProperty.all(
-                Theme.of(context).buttonColor,
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    technologyName,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
-              value: checkBoxValue,
-              onChanged: onChanged,
-            ),
-          ],
+              Checkbox(
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.all(
+                  Theme.of(context).buttonColor,
+                ),
+                value: checkBoxValue,
+                onChanged: onChanged,
+              ),
+            ],
+          ),
         ),
       ),
     );

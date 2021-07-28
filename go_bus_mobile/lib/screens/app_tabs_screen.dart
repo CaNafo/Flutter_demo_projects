@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_bus_mobile/providers/home_screen_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/map_screen.dart';
 import '../screens/home_screen.dart';
@@ -32,35 +34,38 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,
     );
-    return Scaffold(
-      appBar: appBar,
-      body: _screens[_selectedScreenIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Theme.of(context).bottomAppBarColor,
-        selectedItemColor: Theme.of(context).buttonColor,
-        currentIndex: _selectedScreenIndex,
-        type: BottomNavigationBarType.shifting,
-        onTap: _selectScreen,
-        backgroundColor: Theme.of(context).accentColor,
-        elevation: 5,
-        items: [
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: "Početna",
-          ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.map),
-            label: "Mapa",
-          ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            label: "Pregled",
-          ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.settings),
-            label: "Podešavanja",
-          ),
-        ],
+    return ChangeNotifierProvider(
+      create: (context) => HomeScreenProvider(),
+      child: Scaffold(
+        appBar: appBar,
+        body: _screens[_selectedScreenIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Theme.of(context).bottomAppBarColor,
+          selectedItemColor: Theme.of(context).buttonColor,
+          currentIndex: _selectedScreenIndex,
+          type: BottomNavigationBarType.shifting,
+          onTap: _selectScreen,
+          backgroundColor: Theme.of(context).accentColor,
+          elevation: 5,
+          items: [
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.home),
+              label: "Početna",
+            ),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.map),
+              label: "Mapa",
+            ),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.search),
+              label: "Pregled",
+            ),
+            const BottomNavigationBarItem(
+              icon: const Icon(Icons.settings),
+              label: "Podešavanja",
+            ),
+          ],
+        ),
       ),
     );
   }

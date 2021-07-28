@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_bus_mobile/providers/home_screen_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/map_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/settings_screen.dart';
+import '../screens/questions_answers_screen.dart';
+import '../providers/home_screen_provider.dart';
 
 class AppTabsScreen extends StatefulWidget {
   static const routeName = '/app-screens';
@@ -16,7 +17,7 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     MapScreen(),
-    HomeScreen(),
+    QuestionsAnswersScreen(),
     SettingsScreen(),
   ];
   int _selectedScreenIndex = 0;

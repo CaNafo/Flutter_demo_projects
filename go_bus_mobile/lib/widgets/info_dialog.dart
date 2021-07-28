@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:go_bus_mobile/widgets/dialog_technology_card.dart';
 
 import '../constants.dart';
 import 'package:flutter/cupertino.dart';

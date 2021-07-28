@@ -68,78 +68,80 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 const BoxShadow(
                     color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
               ]),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                widget.title,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(
-                widget.descriptions,
-                style: TextStyle(fontSize: 14),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              Column(
-                children: [
-                  DialogTechnologyCard(
-                    technologyName: "Flutter",
-                    image: AssetImage("assets/images/flutter_logo_icon.png"),
-                    checkBoxValue: _flutterChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        _flutterChecked = value;
-                      });
-                    },
-                  ),
-                  DialogTechnologyCard(
-                      technologyName: "React",
-                      image: AssetImage("assets/images/react_logo.png"),
-                      checkBoxValue: _reactChecked,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  widget.title,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  widget.descriptions,
+                  style: TextStyle(fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Column(
+                  children: [
+                    DialogTechnologyCard(
+                      technologyName: "Flutter",
+                      image: AssetImage("assets/images/flutter_logo_icon.png"),
+                      checkBoxValue: _flutterChecked,
                       onChanged: (value) {
                         setState(() {
-                          _reactChecked = value;
+                          _flutterChecked = value;
                         });
-                      }),
-                  DialogTechnologyCard(
-                      technologyName: "Java Spring",
-                      image: AssetImage("assets/images/spring_logo.png"),
-                      checkBoxValue: _springChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          _springChecked = value;
-                        });
-                      }),
-                ],
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop([
-                        _flutterChecked,
-                        _reactChecked,
-                        _springChecked,
-                      ]);
-                    },
-                    child: Text(
-                      widget.text,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
-                    )),
-              ),
-            ],
+                      },
+                    ),
+                    DialogTechnologyCard(
+                        technologyName: "React",
+                        image: AssetImage("assets/images/react_logo.png"),
+                        checkBoxValue: _reactChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _reactChecked = value;
+                          });
+                        }),
+                    DialogTechnologyCard(
+                        technologyName: "Java Spring",
+                        image: AssetImage("assets/images/spring_logo.png"),
+                        checkBoxValue: _springChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _springChecked = value;
+                          });
+                        }),
+                  ],
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop([
+                          _flutterChecked,
+                          _reactChecked,
+                          _springChecked,
+                        ]);
+                      },
+                      child: Text(
+                        widget.text,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      )),
+                ),
+              ],
+            ),
           ),
         ),
         Positioned(

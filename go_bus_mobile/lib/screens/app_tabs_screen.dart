@@ -50,18 +50,22 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
           items: [
             const BottomNavigationBarItem(
               icon: const Icon(Icons.home),
+              activeIcon: const Icon(Icons.home_outlined),
               label: "Početna",
             ),
             const BottomNavigationBarItem(
               icon: const Icon(Icons.map),
+              activeIcon: const Icon(Icons.map_outlined),
               label: "Mapa",
             ),
             const BottomNavigationBarItem(
-              icon: const Icon(Icons.search),
-              label: "Pregled",
+              icon: const Icon(Icons.question_answer),
+              activeIcon: const Icon(Icons.question_answer_outlined),
+              label: "Q&A",
             ),
             const BottomNavigationBarItem(
               icon: const Icon(Icons.settings),
+              activeIcon: const Icon(Icons.settings_outlined),
               label: "Podešavanja",
             ),
           ],

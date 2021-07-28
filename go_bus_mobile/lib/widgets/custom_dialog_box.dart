@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:go_bus_mobile/widgets/dialog_technology_card.dart';
+
 import '../constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,10 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
+  var _flutterChecked = false;
+  var _reactChecked = false;
+  var _springChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -66,18 +72,34 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               ),
               Column(
                 children: [
-                  Card(
-                    elevation: 5,
-                    child: Text("Flutter"),
+                  DialogTechnologyCard(
+                    technologyName: "Flutter",
+                    image: AssetImage("assets/images/flutter_logo_icon.png"),
+                    checkBoxValue: _flutterChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        _flutterChecked = value;
+                      });
+                    },
                   ),
-                  Card(
-                    elevation: 5,
-                    child: Text("React"),
-                  ),
-                  Card(
-                    elevation: 5,
-                    child: Text("Java Spring"),
-                  ),
+                  DialogTechnologyCard(
+                      technologyName: "React",
+                      image: AssetImage("assets/images/react_logo.png"),
+                      checkBoxValue: _reactChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          _reactChecked = value;
+                        });
+                      }),
+                  DialogTechnologyCard(
+                      technologyName: "Java Spring",
+                      image: AssetImage("assets/images/spring_logo.png"),
+                      checkBoxValue: _springChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          _springChecked = value;
+                        });
+                      }),
                 ],
               ),
               SizedBox(

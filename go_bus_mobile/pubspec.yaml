@@ -51,6 +51,7 @@ flutter:
     - assets/images/logged_logo.png
     - assets/images/user_avatar.png
     - assets/images/flutter_logo.png
+    - assets/images/flutter_logo_icon.png
     - assets/images/spring_logo.png
     - assets/images/react_logo.png
   #   - images/a_dot_ham.jpeg

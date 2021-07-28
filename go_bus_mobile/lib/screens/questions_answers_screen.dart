@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../widgets/question_answer_card.dart';
 
 class QuestionsAnswersScreen extends StatefulWidget {
   static const routeName = "/home-screen";
@@ -15,88 +16,31 @@ class _QuestionsAnswersScreen extends State<QuestionsAnswersScreen> {
     return Container(
       color: Theme.of(context).backgroundColor,
       padding: EdgeInsets.symmetric(horizontal: Constants.padding),
-      child: SizedBox(
-        width: double.infinity,
-        child: ListView.builder(
-          itemCount: 1,
-          itemBuilder: (context, index) => SizedBox(
-            width: double.infinity,
-            child: Stack(
-              children: [
-                Card(
-                  elevation: 5,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Q:",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Flexible(
-                            child: Text(
-                              "What is Flutter used for?",
-                              overflow: TextOverflow.fade,
-                              maxLines: 2,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(
-                            child: Text(
-                              "Flutter is an open-source UI software development kit created by Google. It is used to develop cross platform applications for Android, iOS, Linux, Mac, Windows, Google Fuchsia, and the web from a single codebase.",
-                              overflow: TextOverflow.fade,
-                              maxLines: 2,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            ":A",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  child: Text("TEST"),
-                  top: -5,
-                ),
-              ],
+      child: Column(
+        children: [
+          SizedBox(
+            height: 100,
+            child: Image(
+              image: AssetImage("assets/images/qa_logo.png"),
             ),
           ),
-        ),
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+            height: 500,
+            child: ListView.builder(
+              itemCount: 6,
+              itemBuilder: (context, index) => QuestionAnswerCard(
+                userName: "Marko",
+                question:
+                    "Negative margin is generally not needed but there are situations where it’s really useful. For example: why use negative margins?",
+                answer:
+                    "Тo answer this question you first have to define what negative margins, or really margins in general, really are. In CSS, margins have various meanings in the various layout models, most commonly, they are one of several values that contribute to computing the offset that the block layout model uses to place subsequent children; a negative total margin in this case merely means the next child is placed above the bottom of the previous child instead of after it.",
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

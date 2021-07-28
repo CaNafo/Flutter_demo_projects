@@ -54,6 +54,7 @@ flutter:
     - assets/images/flutter_logo_icon.png
     - assets/images/spring_logo.png
     - assets/images/react_logo.png
+    - assets/images/qa_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

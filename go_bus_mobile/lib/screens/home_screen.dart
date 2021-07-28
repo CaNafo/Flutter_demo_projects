@@ -16,11 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   var _flutterChosen = false;
   var _reactChosen = false;
   var _springChosen = false;
-  var _question = "";
+
+  var questionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final homeProvider = Provider.of<HomeScreenProvider>(context);
+    final homeProvider =
+        Provider.of<HomeScreenProvider>(context, listen: false);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(
@@ -71,12 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 50,
               ),
               TextField(
+                controller: questionController,
                 decoration: const InputDecoration(
                   labelText: "Unesite pitanje",
                 ),
-                onChanged: (text) {
-                  _question = text;
-                },
               ),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -132,21 +132,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (_reactChosen) technologiesList.add("React");
                     if (_springChosen) technologiesList.add("Spring");
 
-                    if (_question.length > 0 && technologiesList.length > 0)
+                    if (questionController.text.length > 0 &&
+                        technologiesList.length > 0) {
+                      showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                                backgroundColor: Colors.transparent,
+                                content: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ));
                       homeProvider
-                          .addQuestion(_question, technologiesList)
+                          .addQuestion(
+                              questionController.text, technologiesList)
                           .then(
                             (value) => showDialog(
-                              context: context,
-                              builder: (ctx) => InfoDialog(
-                                title: "Čestitamo",
-                                descriptions:
-                                    "Uspješno ste poslali pitanje. Listu svih pitanja sa odgovorima možete pogledati na ekranu Q&A.",
-                                text: "OK",
-                              ),
-                            ),
+                                context: context,
+                                builder: (ctx) {
+                                  questionController.text = "";
+                                  _flutterChosen = false;
+                                  _reactChosen = false;
+                                  _springChosen = false;
+                                  return InfoDialog(
+                                    title: "Čestitamo",
+                                    descriptions:
+                                        "Uspješno ste poslali pitanje. Listu svih pitanja sa odgovorima možete pogledati na ekranu Q&A.",
+                                    text: "OK",
+                                  );
+                                }),
                           );
-                    else {
+                    } else {
                       showDialog(
                         context: context,
                         builder: (ctx) => InfoDialog(

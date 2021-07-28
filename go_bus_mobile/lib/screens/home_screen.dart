@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_bus_mobile/widgets/custom_dialog_box.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = "/home-screen";
@@ -64,7 +65,17 @@ class HomeScreen extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => CustomDialogBox(
+                          title: "Lista tehnologija",
+                          descriptions:
+                              "Odaberite tehnologiju za koju postavljate pitanje.",
+                          text: "ОK",
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.more_vert),
                     label: const Text("Odaberi tehnologiju"),
                     style: ButtonStyle(

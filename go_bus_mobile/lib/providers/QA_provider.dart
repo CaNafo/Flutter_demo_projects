@@ -5,8 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QAProvider with ChangeNotifier {
-  Future<List> fetchQuestions() async {
+  Future<List> fetchQuestions(bool flutter, bool react, bool spring) async {
     List questions = [];
+
+    var filter = flutter
+        ? "Flutter"
+        : react
+            ? "React"
+            : spring
+                ? "Spring"
+                : null;
 
     final url = Uri.parse(
         'https://flutter-praksa-default-rtdb.firebaseio.com/Questions.json');
@@ -41,7 +49,12 @@ class QAProvider with ChangeNotifier {
             "technologies": tempQuestionData[tempQuestionData.keys.elementAt(j)]
                 ['tech']
           };
-          questions.add(questionData);
+          if (filter != null) {
+            if ((tempQuestionData[tempQuestionData.keys.elementAt(j)]['tech']
+                    as String)
+                .contains(filter)) questions.add(questionData);
+          } else
+            questions.add(questionData);
         }
       }
       return questions;

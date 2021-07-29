@@ -14,10 +14,13 @@ class QuestionsAnswersScreen extends StatefulWidget {
 }
 
 class _QuestionsAnswersScreen extends State<QuestionsAnswersScreen> {
+  var flutter = false;
+  var react = false;
+  var spring = false;
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final height = mediaQuery.size.height - 300;
+    final height = mediaQuery.size.height - 380;
 
     final authProvider = Provider.of<QAProvider>(context, listen: false);
 
@@ -35,10 +38,90 @@ class _QuestionsAnswersScreen extends State<QuestionsAnswersScreen> {
           SizedBox(
             height: 15,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Checkbox(
+                    fillColor: MaterialStateProperty.all(
+                      Theme.of(context).buttonColor,
+                    ),
+                    value: flutter,
+                    onChanged: (value) {
+                      setState(() {
+                        if (!flutter) {
+                          flutter = true;
+                          react = false;
+                          spring = false;
+                        } else {
+                          flutter = false;
+                        }
+                      });
+                    },
+                  ),
+                  Text(
+                    "Flutter",
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Checkbox(
+                    fillColor: MaterialStateProperty.all(
+                      Theme.of(context).buttonColor,
+                    ),
+                    value: react,
+                    onChanged: (value) {
+                      setState(() {
+                        if (!react) {
+                          react = true;
+                          flutter = false;
+                          spring = false;
+                        } else {
+                          react = false;
+                        }
+                      });
+                    },
+                  ),
+                  Text(
+                    "React",
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Checkbox(
+                    fillColor: MaterialStateProperty.all(
+                      Theme.of(context).buttonColor,
+                    ),
+                    value: spring,
+                    onChanged: (value) {
+                      setState(() {
+                        if (!spring) {
+                          spring = true;
+                          react = false;
+                          flutter = false;
+                        } else {
+                          spring = false;
+                        }
+                      });
+                    },
+                  ),
+                  Text(
+                    "Spring",
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
           Container(
             height: height,
             child: FutureBuilder(
-              future: authProvider.fetchQuestions(),
+              future: authProvider.fetchQuestions(flutter, react, spring),
               builder: (context, questionsSnapshot) => questionsSnapshot
                           .connectionState ==
                       ConnectionState.waiting

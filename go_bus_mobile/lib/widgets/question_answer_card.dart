@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 
-class QuestionAnswerCard extends StatelessWidget {
+class QuestionAnswerCard extends StatefulWidget {
   final String userName;
   final String question;
   final String answer;
+  final String technologies;
 
   QuestionAnswerCard({
     @required this.userName,
     @required this.question,
     @required this.answer,
+    @required this.technologies,
   });
+
+  @override
+  _QuestionAnswerCardState createState() => _QuestionAnswerCardState();
+}
+
+class _QuestionAnswerCardState extends State<QuestionAnswerCard> {
+  String _technologies;
+  @override
+  void initState() {
+    _technologies = widget.technologies.replaceAll("]", "");
+    _technologies = _technologies.replaceAll("[", "");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +58,7 @@ class QuestionAnswerCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          question,
+                          widget.question,
                           overflow: TextOverflow.fade,
                           maxLines: 2,
                         ),
@@ -61,7 +76,7 @@ class QuestionAnswerCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          answer,
+                          widget.answer,
                           overflow: TextOverflow.fade,
                           maxLines: 2,
                         ),
@@ -79,6 +94,15 @@ class QuestionAnswerCard extends StatelessWidget {
                         width: 10,
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    _technologies,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w200,
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -107,7 +131,7 @@ class QuestionAnswerCard extends StatelessWidget {
                       minHeight: 16,
                     ),
                     child: Text(
-                      userName,
+                      widget.userName,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 15,

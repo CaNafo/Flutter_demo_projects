@@ -6,6 +6,7 @@ import '../screens/home_screen.dart';
 import '../screens/settings_screen.dart';
 import '../screens/questions_answers_screen.dart';
 import '../providers/home_screen_provider.dart';
+import '../providers/QA_provider.dart';
 
 class AppTabsScreen extends StatefulWidget {
   static const routeName = '/app-screens';
@@ -35,8 +36,15 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,
     );
-    return ChangeNotifierProvider(
-      create: (context) => HomeScreenProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: HomeScreenProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: QAProvider(),
+        ),
+      ],
       child: Scaffold(
         appBar: appBar,
         body: _screens[_selectedScreenIndex],

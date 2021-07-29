@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class QuestionAnswerCard extends StatefulWidget {
+  final bool myQuestion;
   final String userName;
   final String question;
   final String answer;
   final String technologies;
 
   QuestionAnswerCard({
+    @required this.myQuestion,
     @required this.userName,
     @required this.question,
     @required this.answer,
@@ -36,6 +38,7 @@ class _QuestionAnswerCardState extends State<QuestionAnswerCard> {
           clipBehavior: Clip.none,
           children: [
             Card(
+              color: widget.myQuestion ? Colors.lightBlue[100] : null,
               elevation: 5,
               child: Column(
                 children: [

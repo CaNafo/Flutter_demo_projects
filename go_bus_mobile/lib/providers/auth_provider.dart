@@ -168,8 +168,6 @@ class AuthProvider with ChangeNotifier {
           },
         ),
       );
-      print("*********************");
-      print(res.body);
     } catch (error) {
       throw error;
     }

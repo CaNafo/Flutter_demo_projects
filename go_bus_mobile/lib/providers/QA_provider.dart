@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QAProvider with ChangeNotifier {
   Future<List> fetchQuestions() async {
@@ -31,6 +32,7 @@ class QAProvider with ChangeNotifier {
         var username = await fetchUsername(extractedData.keys.elementAt(i));
         for (var j = 0; j < tempQuestionData.keys.length; j++) {
           var questionData = {
+            "userId": extractedData.keys.elementAt(i),
             "username": username,
             "question": tempQuestionData[tempQuestionData.keys.elementAt(j)]
                 ['question'],
@@ -44,7 +46,17 @@ class QAProvider with ChangeNotifier {
       }
       return questions;
     } catch (e) {
-      print(e);
+      return [];
     }
+  }
+
+  Future<String> getUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('userData')) {
+      return "";
+    }
+    final extractedUserData =
+        json.decode(prefs.getString('userData')) as Map<String, Object>;
+    return extractedUserData['userId'];
   }
 }

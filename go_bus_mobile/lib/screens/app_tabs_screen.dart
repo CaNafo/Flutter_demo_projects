@@ -7,6 +7,7 @@ import '../screens/settings_screen.dart';
 import '../screens/questions_answers_screen.dart';
 import '../providers/home_screen_provider.dart';
 import '../providers/QA_provider.dart';
+import '../providers/settings_provider.dart';
 
 class AppTabsScreen extends StatefulWidget {
   static const routeName = '/app-screens';
@@ -43,6 +44,9 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
         ),
         ChangeNotifierProvider.value(
           value: QAProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SettingsProvider(),
         ),
       ],
       child: Scaffold(

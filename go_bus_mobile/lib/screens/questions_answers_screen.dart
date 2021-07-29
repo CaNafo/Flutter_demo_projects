@@ -39,29 +39,43 @@ class _QuestionsAnswersScreen extends State<QuestionsAnswersScreen> {
             height: height,
             child: FutureBuilder(
               future: authProvider.fetchQuestions(),
-              builder: (context, snapshot) => snapshot.connectionState ==
+              builder: (context, questionsSnapshot) => questionsSnapshot
+                          .connectionState ==
                       ConnectionState.waiting
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
                   : ListView.builder(
-                      itemCount: (snapshot.data as List).length,
+                      itemCount: (questionsSnapshot.data as List).length,
                       itemBuilder: (context, index) => TextButton(
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (ctx) => QADialog(
-                                question: snapshot.data[index]['question'],
-                                answer:
-                                    snapshot.data[index]['answer'] ?? "Test",
+                                question: questionsSnapshot.data[index]
+                                    ['question'],
+                                answer: questionsSnapshot.data[index]
+                                        ['answer'] ??
+                                    "Test",
                                 text: "NAZAD"),
                           );
                         },
-                        child: QuestionAnswerCard(
-                          userName: snapshot.data[index]['username'],
-                          question: snapshot.data[index]['question'],
-                          answer: snapshot.data[index]['answer'] ?? "",
-                          technologies: snapshot.data[index]['technologies'],
+                        child: FutureBuilder(
+                          future: authProvider.getUserId(),
+                          builder: (context, userIdSnapshot) =>
+                              QuestionAnswerCard(
+                            myQuestion: userIdSnapshot.connectionState ==
+                                    ConnectionState.waiting
+                                ? false
+                                : userIdSnapshot.data ==
+                                    questionsSnapshot.data[index]['userId'],
+                            userName: questionsSnapshot.data[index]['username'],
+                            question: questionsSnapshot.data[index]['question'],
+                            answer:
+                                questionsSnapshot.data[index]['answer'] ?? "",
+                            technologies: questionsSnapshot.data[index]
+                                ['technologies'],
+                          ),
                         ),
                       ),
                     ),

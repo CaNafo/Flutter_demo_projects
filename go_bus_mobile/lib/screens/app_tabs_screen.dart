@@ -19,11 +19,11 @@ class AppTabsScreen extends StatefulWidget {
 class _AppTabsScreenState extends State<AppTabsScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
-    MapScreen(),
+    // MapScreen(),
     QuestionsAnswersScreen(),
     SettingsScreen(),
   ];
-  int _selectedScreenIndex = 0;
+  int _selectedScreenIndex = 1;
 
   void _selectScreen(int index) {
     setState(() {
@@ -67,11 +67,11 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
               activeIcon: const Icon(Icons.home_outlined),
               label: AppLocalizations.of(context).home_bottom_tab,
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.map),
-              activeIcon: const Icon(Icons.map_outlined),
-              label: AppLocalizations.of(context).map_bottom_tab,
-            ),
+            // BottomNavigationBarItem(
+            //   icon: const Icon(Icons.map),
+            //   activeIcon: const Icon(Icons.map_outlined),
+            //   label: AppLocalizations.of(context).map_bottom_tab,
+            // ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.question_answer),
               activeIcon: const Icon(Icons.question_answer_outlined),

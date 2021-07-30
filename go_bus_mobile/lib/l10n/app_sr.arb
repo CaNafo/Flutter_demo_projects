@@ -1,0 +1,15 @@
+{
+    "language": "English",
+    "auth_welcome_message_1": "Zdravo,",
+    "auth_welcome_message_2": "Dobrodošli",
+    "login_button": "Prijavi se",
+    "register_button": "Registruj se",
+    "email_placeholder": "Email",
+    "email_example_placeholder": "email@domen.com",
+    "password_placeholder": "Lozinka",
+    "repeat_password_placeholder": "Ponovi lozinku",
+    "username_placeholder": "Korisničko ime",
+    "login_tab_text": "Prijavi se",
+    "register_tab_text": "Registruj se",
+    "no_account_text": "Nemate nalog? Registrujte se ovdje."
+}

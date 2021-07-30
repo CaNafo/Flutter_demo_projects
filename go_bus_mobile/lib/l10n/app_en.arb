@@ -1,0 +1,54 @@
+{
+    "language": "English",
+    "@language":{
+        "description": "The current language"
+    },
+    "auth_welcome_message_1": "Hello,",
+    "@auth_welcome_message_1":{
+        "description": "Auth welcome message 1. sentence"
+    },
+    "auth_welcome_message_2": "Welcome",
+    "@auth_welcome_message_2":{
+        "description": "Auth welcome message 2. sentence"
+    },
+    "login_button": "Login",
+    "@login_button": {
+        "description": "Translation for the sign in button"
+    },
+    "register_button": "Register",
+    "@login_button": {
+        "description": "Translation for the register button"
+    },
+    "email_placeholder": "Email",
+    "@email_placeholder": {
+        "description": "Email placeholder text"
+    },
+    "email_example_placeholder": "email@domen.com",
+    "@email_example_placeholder": {
+        "description": "Email example placeholder text"
+    },
+    "password_placeholder": "Password",
+    "@password_placeholder": {
+        "description": "Password placeholder text"
+    },
+    "repeat_password_placeholder": "Repeat password",
+    "@repeat_password_placeholder": {
+        "description": "Repeat password placeholder text"
+    },
+    "username_placeholder": "Username",
+    "@username_placeholder": {
+        "description": "Username placeholder text"
+    },
+    "login_tab_text": "Login",
+    "@login_tab_text": {
+        "description": "Text of login tab on auth screen"
+    },
+    "register_tab_text": "Register",
+    "@login_tab_text": {
+        "description": "Text of register tab on auth screen"
+    },
+    "no_account_text": "Don't have an account? Register here.",
+    "@no_account_text": {
+        "description": "Don't have an account text"
+    }
+}

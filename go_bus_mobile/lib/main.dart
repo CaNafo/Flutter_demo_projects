@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import './l10n/l10n.dart';
 import './providers/auth_provider.dart';
 import './screens/auth_screens/auth_tabs_screen.dart';
 import './screens/app_tabs_screen.dart';
+import './providers/locale_provider.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 void main() {
   runApp(MyApp());
@@ -13,8 +17,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: AuthProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: LocaleProvider(),
+        ),
+      ],
       child: Consumer<AuthProvider>(
         builder: (context, authProvider, _) => MaterialApp(
           title: 'Flutter Demo',
@@ -36,6 +47,13 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
+          supportedLocales: L10n.all,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          locale: Provider.of<LocaleProvider>(context).locale,
           home: authProvider.isAuth
               ? AppTabsScreen()
               : FutureBuilder(

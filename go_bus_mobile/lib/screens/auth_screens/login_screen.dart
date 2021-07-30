@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 import '../../providers/auth_provider.dart';
 import '../../widgets/password_input_field.dart';
+import '../../providers/locale_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -23,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final _authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final _localeProvider = Provider.of<LocaleProvider>(context);
 
     _saveForm() async {
       bool validated = _loginForm.currentState.validate();
@@ -51,26 +54,26 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Zdravo,",
+            AppLocalizations.of(context).auth_welcome_message_1,
             style: Theme.of(context).primaryTextTheme.headline1,
           ),
           Text(
-            "Dobrodošli!",
+            AppLocalizations.of(context).auth_welcome_message_2,
             style: Theme.of(context).primaryTextTheme.headline2,
           ),
           Form(
             key: _loginForm,
             child: Container(
               width: double.infinity,
-              height: 300,
+              height: 500,
               child: ListView(
                 children: [
                   const SizedBox(
                     height: 40,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context).email_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
                     validator: _authProvider.validateEmailField,
@@ -81,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   PasswordInputField(
                     validate: _authProvider.validateLoginPassword,
-                    placeholder: "Lozinka",
+                    placeholder:
+                        AppLocalizations.of(context).password_placeholder,
                     onChanged: (text) => password = text,
                     textInputAction: TextInputAction.send,
                   ),
@@ -91,7 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('Uloguj se'),
+                      Text(
+                        AppLocalizations.of(context).login_button,
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
@@ -109,6 +115,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       )
                     ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _localeProvider.setLocale(
+                        Locale("sr"),
+                      );
+                    },
+                    child: Text("SR"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _localeProvider.setLocale(
+                        Locale("en"),
+                      );
+                    },
+                    child: Text("EN"),
                   ),
                 ],
               ),

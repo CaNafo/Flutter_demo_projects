@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 import './login_screen.dart';
 import './register_screen.dart';
@@ -47,13 +48,13 @@ class _AuthTabsScreenState extends State<AuthTabsScreen>
       bottom: TabBar(
         indicatorColor: Theme.of(context).buttonColor,
         tabs: [
-          const Tab(
+          Tab(
             icon: null,
-            text: "Prijavi se",
+            text: AppLocalizations.of(context).login_tab_text,
           ),
-          const Tab(
+          Tab(
             icon: null,
-            text: "Registruj se",
+            text: AppLocalizations.of(context).register_tab_text,
           ),
         ],
         controller: _tabController,
@@ -92,7 +93,9 @@ class _AuthTabsScreenState extends State<AuthTabsScreen>
               onPressed: () {
                 _tabController.animateTo(tabIndex);
               },
-              child: const Text("Nemate nalog? Registrujte se ovdje."),
+              child: Text(
+                AppLocalizations.of(context).no_account_text,
+              ),
             ),
         ]),
       ),

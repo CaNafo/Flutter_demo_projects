@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 import '../../widgets/password_input_field.dart';
 
@@ -47,11 +48,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Zdravo,",
+            AppLocalizations.of(context).auth_welcome_message_1,
             style: Theme.of(context).primaryTextTheme.headline1,
           ),
           Text(
-            "Dobrodošli!",
+            AppLocalizations.of(context).auth_welcome_message_2,
             style: Theme.of(context).primaryTextTheme.headline2,
           ),
           Form(
@@ -64,8 +65,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 40,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'email@domen.com',
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)
+                          .email_example_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
                     validator: _authProvider.validateEmailField,
@@ -75,8 +77,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 40,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Korisničko ime',
+                    decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context).username_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
                     validator: _authProvider.validateUsername,
@@ -87,7 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   PasswordInputField(
                     validate: _authProvider.validateRegisterPasswordField,
-                    placeholder: "Lozinka",
+                    placeholder:
+                        AppLocalizations.of(context).password_placeholder,
                     onChanged: (pass) => _password = pass,
                     textInputAction: TextInputAction.next,
                   ),
@@ -97,7 +101,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   PasswordInputField(
                     validate: (repeatedPass) => _authProvider
                         .validateRepeatPasswordField(repeatedPass, _password),
-                    placeholder: "Lozinka",
+                    placeholder:
+                        AppLocalizations.of(context).password_placeholder,
                     onChanged: (pass) => {},
                     textInputAction: TextInputAction.next,
                   ),
@@ -107,7 +112,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('Registruj se'),
+                      Text(
+                        AppLocalizations.of(context).register_button,
+                      ),
                       SizedBox(
                         width: 10,
                       ),

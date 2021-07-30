@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/info_dialog.dart';
+import '../widgets/change_language.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class SettingsScreen extends StatefulWidget {
@@ -52,9 +53,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             image: const AssetImage("assets/images/user_avatar.png"),
             height: 150,
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 25, right: 25, top: 25),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, right: 25, top: 25),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   Form(
@@ -113,19 +114,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Theme.of(context).buttonColor),
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  ChangeLanguage(),
                 ],
               ),
             ),
           ),
+          Expanded(
+            child: Container(),
+          ),
           Padding(
-            padding: EdgeInsets.only(bottom: 25),
+            padding: const EdgeInsets.only(bottom: 25),
             child: TextButton(
               onPressed: () {
                 _authProvider.logout();
               },
               child: Text(
                 AppLocalizations.of(context).sign_out_btn,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),

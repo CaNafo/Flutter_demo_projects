@@ -5,6 +5,7 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import '../../providers/auth_provider.dart';
 import '../../widgets/password_input_field.dart';
 import '../../providers/locale_provider.dart';
+import '../../widgets/change_language.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -116,22 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _localeProvider.setLocale(
-                        Locale("sr"),
-                      );
-                    },
-                    child: Text("SR"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _localeProvider.setLocale(
-                        Locale("en"),
-                      );
-                    },
-                    child: Text("EN"),
-                  ),
+                  ChangeLanguage(),
                 ],
               ),
             ),

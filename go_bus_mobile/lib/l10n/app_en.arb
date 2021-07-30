@@ -50,5 +50,78 @@
     "no_account_text": "Don't have an account? Register here.",
     "@no_account_text": {
         "description": "Don't have an account text"
+    },
+
+    "home_bottom_tab": "Home",
+    "@home_bottom_tab": {
+        "description": "Home bottom tab text"
+    },
+    "map_bottom_tab": "Map",
+    "@map_bottom_tab": {
+        "description": "Map bottom tab text"
+    },
+    "qa_bottom_tab": "Q&A",
+    "@qa_bottom_tab": {
+        "description": "QA bottom tab text"
+    },
+    "settings_bottom_tab": "Settings",
+    "@settings_bottom_tab": {
+        "description": "Settings bottom tab text"
+    },
+
+    "enter_question_placeholder": "Enter your question",
+    "@enter_question_placeholder": {
+        "description": "Enter question text input placeholder"
+    },
+    "choose_texhnology_btn": "Choose technology",
+    "@choose_texhnology_btn": {
+        "description": "Choose technology button text"
+    },
+    "send_question_btn": "Send",
+    "@send_question_btn": {
+        "description": "Send question button text"
+    },
+    "technology_list_text": "Technology list",
+    "@technology_list_text": {
+        "description": "Technology list text"
+    },
+    "technology_list_description": "Choose technology for your question.",
+    "@technology_list_description": {
+        "description": "Technology list modal description"
+    },
+    "congrats_dialog_title": "Congratulations!",
+    "@congrats_dialog_title": {
+        "description": "Congratulations modal title"
+    },
+    "successfully_sent_question_dialog_text": "You've successfully sent your question. You can check for the answers in Q&A section.",
+    "@successfully_sent_question_dialog_text": {
+        "description": "Successfully sent question text"
+    },
+    "attention_dialog_title": "Attention!",
+    "@attention_dialog_title": {
+        "description": "Attention modal title"
+    },
+    "attention_dialog_text": "Please enter a question and choose a technology.",
+    "@attention_dialog_text": {
+        "description": "Question not sent description"
+    },
+
+    "settings_screeen_title": "Settings",
+    "@settings_screeen_title": {
+        "description": "Settings screeen title"
+    },
+    "save_btn": "Save",
+    "@save_btn": {
+        "description": "Save button text"
+    },
+    "successfully_changed_username_dialog_text": "You've successfully changed your username.",
+    "@successfully_changed_username_dialog_text": {
+        "description": "Successfully changed username dialog text"
+    },
+    "sign_out_btn": "Sign out",
+    "@sign_out_btn": {
+        "description": "Sign out button text"
     }
+
+
 }

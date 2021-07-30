@@ -11,5 +11,25 @@
     "username_placeholder": "Korisničko ime",
     "login_tab_text": "Prijavi se",
     "register_tab_text": "Registruj se",
-    "no_account_text": "Nemate nalog? Registrujte se ovdje."
+    "no_account_text": "Nemate nalog? Registrujte se ovdje.",
+
+    "home_bottom_tab": "Početna",
+    "map_bottom_tab": "Mapa",
+    "qa_bottom_tab": "Q&A",
+    "settings_bottom_tab": "Podešavanja",
+    
+    "enter_question_placeholder": "Unesite pitanje",
+    "choose_texhnology_btn": "Odaberite tehnologiju",
+    "send_question_btn": "Pošalji",
+    "technology_list_text": "Lista tehnologija",
+    "technology_list_description": "Odaberite tehnologiju za koju postavljate pitanje.",
+    "congrats_dialog_title": "Čestitamo!",
+    "successfully_sent_question_dialog_text": "Uspješno ste poslali pitanje. Listu svih pitanja sa odgovorima možete pogledati na ekranu Q&A.",
+    "attention_dialog_title": "Pažnja!",
+    "attention_dialog_text": "Molimo vas da unesete pitanje i odaberete tehnologiju.",
+
+    "settings_screeen_title": "Podešavanja",
+    "save_btn": "Sačuvaj",
+    "successfully_changed_username_dialog_text": "Uspješno ste sačuvali vaše korisničko ime.",
+    "sign_out_btn": "Odjavi se"
 }

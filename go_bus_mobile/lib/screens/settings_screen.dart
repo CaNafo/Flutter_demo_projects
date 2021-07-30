@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/info_dialog.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = "/home-screen";
@@ -40,8 +41,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            "Podešavanja",
+          Text(
+            AppLocalizations.of(context).settings_screeen_title,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
@@ -60,8 +61,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     key: formKey,
                     child: TextFormField(
                       controller: usernameController,
-                      decoration: const InputDecoration(
-                        labelText: 'Korisničko ime',
+                      decoration: InputDecoration(
+                        labelText:
+                            AppLocalizations.of(context).username_placeholder,
                       ),
                       textInputAction: TextInputAction.send,
                       validator: _validateUsernameField,
@@ -93,16 +95,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               context: context,
                               builder: (ctx) {
                                 return InfoDialog(
-                                  title: "Čestitamo",
-                                  descriptions:
-                                      "Uspješno ste promijenili vaše korisničko ime.",
+                                  title: AppLocalizations.of(context)
+                                      .congrats_dialog_title,
+                                  descriptions: AppLocalizations.of(context)
+                                      .successfully_changed_username_dialog_text,
                                   text: "OK",
                                 );
                               });
                         },
                       );
                     },
-                    child: Text("Sačuvaj"),
+                    child: Text(
+                      AppLocalizations.of(context).save_btn,
+                    ),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Theme.of(context).buttonColor),
@@ -118,8 +123,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onPressed: () {
                 _authProvider.logout();
               },
-              child: const Text(
-                "Odjavi se",
+              child: Text(
+                AppLocalizations.of(context).sign_out_btn,
                 style: TextStyle(
                   fontSize: 20,
                 ),

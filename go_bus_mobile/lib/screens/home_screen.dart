@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/home_screen_provider.dart';
 import '../widgets/custom_dialog_box.dart';
 import '../widgets/info_dialog.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class HomeScreen extends StatefulWidget {
   static const routeName = "/home-screen";
@@ -37,21 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (ctx) => FutureBuilder(
             future: homeProvider.addQuestion(
                 questionController.text, technologiesList),
-            builder: (context, snapshot) =>
-                snapshot.connectionState == ConnectionState.waiting
-                    ? AlertDialog(
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                        content: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : InfoDialog(
-                        title: "Čestitamo",
-                        descriptions:
-                            "Uspješno ste poslali pitanje. Listu svih pitanja sa odgovorima možete pogledati na ekranu Q&A.",
-                        text: "OK",
-                      ),
+            builder: (context, snapshot) => snapshot.connectionState ==
+                    ConnectionState.waiting
+                ? AlertDialog(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    content: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : InfoDialog(
+                    title: AppLocalizations.of(context).congrats_dialog_title,
+                    descriptions: AppLocalizations.of(context)
+                        .successfully_sent_question_dialog_text,
+                    text: "OK",
+                  ),
           ),
         ).then(
           (value) {
@@ -67,9 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
         showDialog(
           context: context,
           builder: (ctx) => InfoDialog(
-            title: "Pažnja",
-            descriptions:
-                "Molimo vas da unesete pitanje i odaberete tehnologiju.",
+            title: AppLocalizations.of(context).attention_dialog_title,
+            descriptions: AppLocalizations.of(context).attention_dialog_text,
             text: "OK",
           ),
         );
@@ -129,8 +129,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 TextField(
                   controller: questionController,
-                  decoration: const InputDecoration(
-                    labelText: "Unesite pitanje",
+                  decoration: InputDecoration(
+                    labelText:
+                        AppLocalizations.of(context).enter_question_placeholder,
                   ),
                 ),
                 Container(
@@ -147,9 +148,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         showDialog(
                           context: context,
                           builder: (ctx) => CustomDialogBox(
-                            title: "Lista tehnologija",
-                            descriptions:
-                                "Odaberite tehnologije za koje postavljate pitanje.",
+                            title: AppLocalizations.of(context)
+                                .technology_list_text,
+                            descriptions: AppLocalizations.of(context)
+                                .technology_list_description,
                             text: "ОK",
                             initValueFlutter: _flutterChosen,
                             initValueReact: _reactChosen,
@@ -168,7 +170,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: (_flutterChosen || _reactChosen || _springChosen)
                           ? const Icon(Icons.check)
                           : const Icon(Icons.more_vert),
-                      label: const Text("Odaberi tehnologiju"),
+                      label: Text(
+                        AppLocalizations.of(context).choose_texhnology_btn,
+                      ),
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all(5),
                         backgroundColor: MaterialStateProperty.all(
@@ -185,8 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: _validateAndSendQuestion,
-                    child: const Text(
-                      "Pošalji",
+                    child: Text(
+                      AppLocalizations.of(context).send_question_btn,
                     ),
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(5),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 import '../screens/map_screen.dart';
 import '../screens/home_screen.dart';
@@ -61,25 +62,25 @@ class _AppTabsScreenState extends State<AppTabsScreen> {
           backgroundColor: Theme.of(context).accentColor,
           elevation: 5,
           items: [
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: const Icon(Icons.home),
               activeIcon: const Icon(Icons.home_outlined),
-              label: "Početna",
+              label: AppLocalizations.of(context).home_bottom_tab,
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: const Icon(Icons.map),
               activeIcon: const Icon(Icons.map_outlined),
-              label: "Mapa",
+              label: AppLocalizations.of(context).map_bottom_tab,
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: const Icon(Icons.question_answer),
               activeIcon: const Icon(Icons.question_answer_outlined),
-              label: "Q&A",
+              label: AppLocalizations.of(context).qa_bottom_tab,
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: const Icon(Icons.settings),
               activeIcon: const Icon(Icons.settings_outlined),
-              label: "Podešavanja",
+              label: AppLocalizations.of(context).settings_bottom_tab,
             ),
           ],
         ),

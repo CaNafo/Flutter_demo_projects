@@ -121,7 +121,30 @@
     "sign_out_btn": "Sign out",
     "@sign_out_btn": {
         "description": "Sign out button text"
+    },
+
+    "email_validation_error": "Please check your email",
+    "@email_validation_error": {
+        "description": "Email validation false text message"
+    },
+    "password_validation_empty": "Please enter your password",
+    "@password_validation_empty": {
+        "description": "Password field is empty message"
+    },
+    "password_validation_match_failiture": "Passwords are not matching",
+    "@password_validation_match_failiture": {
+        "description": "Passwords are not matching message"
+    },
+    "password_validation_too_short": "Password must contains at least 7 characters",
+    "@password_validation_too_short": {
+        "description": "Password is too short message"
+    },
+    "password_validation_needs_digits_letters": "Password must contains at one digit and one letter",
+    "@password_validation_needs_digits_letters": {
+        "description": "Password must contains at one digit and one letter message"
+    },
+    "username_validation_empty": "Please enter your username",
+    "@username_validation_empty": {
+        "description": "Username field is empty message"
     }
-
-
 }

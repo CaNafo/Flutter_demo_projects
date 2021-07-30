@@ -31,5 +31,12 @@
     "settings_screeen_title": "Podešavanja",
     "save_btn": "Sačuvaj",
     "successfully_changed_username_dialog_text": "Uspješno ste sačuvali vaše korisničko ime.",
-    "sign_out_btn": "Odjavi se"
+    "sign_out_btn": "Odjavi se",
+
+    "email_validation_error": "Molimo vas da provjerite e-mail adresu",
+    "password_validation_empty": "Molimo vas da unesete lozinku",
+    "password_validation_match_failiture": "Lozinke se ne podudaraju",
+    "password_validation_too_short": "Lozinka mora sadržati najmanje 7 karaktera",
+    "password_validation_needs_digits_letters": "Lozinka mora sadržati najmanje jedno slovo i jedan broj",
+    "username_validation_empty": "Molimo Vas da unesete korisničko ime"
 }

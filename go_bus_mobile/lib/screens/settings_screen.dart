@@ -19,7 +19,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   String _validateUsernameField(String username) {
     if (username != null && username.length > 0) return null;
-    return "Molimo vas da unesete korisničko ime";
+    return AppLocalizations.of(context).username_validation_empty;
   }
 
   @override

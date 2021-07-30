@@ -77,14 +77,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: AppLocalizations.of(context).email_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
-                    validator: _authProvider.validateEmailField,
+                    validator: (email) =>
+                        _authProvider.validateEmailField(email, context),
                     onSaved: (value) => email = value,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   PasswordInputField(
-                    validate: _authProvider.validateLoginPassword,
+                    validate: (password) =>
+                        _authProvider.validateLoginPassword(password, context),
                     placeholder:
                         AppLocalizations.of(context).password_placeholder,
                     onChanged: (text) => password = text,

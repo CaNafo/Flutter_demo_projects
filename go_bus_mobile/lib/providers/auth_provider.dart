@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 import '../models/http_exception.dart';
 
@@ -16,45 +17,48 @@ class AuthProvider with ChangeNotifier {
   static const _API_KEY = 'AIzaSyDf4yapBLk3EYDD3tfpdUacBMj_-JWFNwk';
 
   // Methods for verifying login and register input fields
-  String validateEmailField(String email) {
+  String validateEmailField(String email, BuildContext context) {
     if (email != null &&
         RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
             .hasMatch(email)) return null;
 
-    return "Molimo vas da provjerite e-mail adresu";
+    return AppLocalizations.of(context).email_validation_error;
   }
 
-  String validateRegisterPasswordField(String password) {
+  String validateRegisterPasswordField(String password, BuildContext context) {
     if (password == null || password.length < 1)
-      return "Molimo vas da unesete lozinku";
+      return AppLocalizations.of(context).password_validation_empty;
 
     if (password.length < 7)
-      return "Lozinka mora sadržati najmanje 7 karaktera";
+      return AppLocalizations.of(context).password_validation_too_short;
 
     if (!RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$").hasMatch(password))
-      return "Lozinka mora sadržati najmanje jedno slovo i jedan broj";
+      return AppLocalizations.of(context)
+          .password_validation_needs_digits_letters;
 
     return null;
   }
 
-  String validateRepeatPasswordField(String repeatedPassword, password) {
+  String validateRepeatPasswordField(
+      String repeatedPassword, password, BuildContext context) {
     if (repeatedPassword == null || repeatedPassword.length < 1)
-      return "Molimo vas da unesete lozinku";
+      return AppLocalizations.of(context).password_validation_empty;
 
-    if (repeatedPassword != password) return "Lozinke se ne podudaraju";
+    if (repeatedPassword != password)
+      return AppLocalizations.of(context).password_validation_match_failiture;
 
     return null;
   }
 
-  String validateLoginPassword(String password) {
+  String validateLoginPassword(String password, BuildContext context) {
     if (password == null || password.length < 1)
-      return "Molimo Vas da unesete lozinku";
+      return AppLocalizations.of(context).password_validation_empty;
     return null;
   }
 
-  String validateUsername(String username) {
+  String validateUsername(String username, BuildContext context) {
     if (username == null || username.length < 1)
-      return "Molimo Vas da unesete korisničko ime";
+      return AppLocalizations.of(context).username_validation_empty;
     return null;
   }
 

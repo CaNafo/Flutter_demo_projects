@@ -70,7 +70,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           .email_example_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
-                    validator: _authProvider.validateEmailField,
+                    validator: (email) =>
+                        _authProvider.validateEmailField(email, context),
                     onSaved: (inputText) => _email = inputText,
                   ),
                   const SizedBox(
@@ -82,14 +83,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           AppLocalizations.of(context).username_placeholder,
                     ),
                     textInputAction: TextInputAction.next,
-                    validator: _authProvider.validateUsername,
+                    validator: (username) =>
+                        _authProvider.validateUsername(username, context),
                     onSaved: (inputText) => _username = inputText,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   PasswordInputField(
-                    validate: _authProvider.validateRegisterPasswordField,
+                    validate: (password) => _authProvider
+                        .validateRegisterPasswordField(password, context),
                     placeholder:
                         AppLocalizations.of(context).password_placeholder,
                     onChanged: (pass) => _password = pass,
@@ -99,8 +102,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 15,
                   ),
                   PasswordInputField(
-                    validate: (repeatedPass) => _authProvider
-                        .validateRepeatPasswordField(repeatedPass, _password),
+                    validate: (repeatedPass) =>
+                        _authProvider.validateRepeatPasswordField(
+                            repeatedPass, _password, context),
                     placeholder:
                         AppLocalizations.of(context).password_placeholder,
                     onChanged: (pass) => {},
